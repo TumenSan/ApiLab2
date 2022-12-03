@@ -8,36 +8,6 @@ function signinPre() {
     signin(name, password);
 }
 
-async function signin(userName, userPassword) {
-    // отправляет запрос и получаем ответ
-    const response = await fetch("/signin", {
-        method: "POST",
-        headers: { "Accept": "application/json", "Content-Type": "application/json"},
-        body: JSON.stringify({
-            name: userName,
-            password: userPassword
-        })
-    });
-    // если запрос прошел нормально
-    if (response.ok === true) {
-        // получаем данные
-        const user = await response.json();
-        //let rows = document.querySelector("tbody");
-        let TokenLabel = document.createElement('div');
-        console.log(user.token);
-        //document.cookie = "name=bearerToken; expires=Thu, 01 Jan 1970 00:00:00 GMT;";
-        //delete document.cookie['bearerToken'];
-        //document.cookie = user.token;
-        //alert(document.cookie);
-
-        localStorage.setItem('bearerToken', user.token);
-        //alert( localStorage.getItem('bearerToken') );
-
-        console.log(user);
-
-    }
-}
-
 
 async function signup(userName, userPassword) {
     // отправляет запрос и получаем ответ
@@ -62,55 +32,7 @@ async function signup(userName, userPassword) {
         console.log('Error signup');
     }
 }
-//!!!!!
-function Get1UserPre() {
-    const form = document.forms["userForm"];
-    const name = form.elements["name"].value;
-    const password = form.elements["password"].value;
-    console.log(name);
-    console.log(password);
-    Get1User(name, password);
-}
-// Получение пользователя
-async function Get1User(userName, userPassword) {
-    const response = await fetch("/useri", {
-        method: "POST",
-        headers: { "Accept": "application/json", "Content-Type": "application/json"},
-        body: JSON.stringify({
-            name: userName,
-            password: userPassword
-        })
-    });
-    // если запрос прошел нормально
-    if (response.ok === true) {
-        // получаем данные
-        const users = await response.json();
 
-        console.log(users);
-    }
-}
-//
-
-async function MeUsers() {
-    // отправляет запрос и получаем ответ
-    const response = await fetch("/me/" + localStorage.getItem('bearerToken'), {
-        method: "GET",
-        headers: { "Accept": "application/json" }
-    });
-    // если запрос прошел нормально
-    if (response.ok === true) {
-        // получаем данные
-        const user = await response.json();
-        //let rows = document.querySelector("tbody"); 
-
-        let loginLabel = document.createElement('div');
-
-        loginLabel.innerHTML = user.login;
-        document.body.append(loginLabel);
-
-        console.log(user);
-    }
-}
 
 // Получение всех пользователей
 async function GetUsers() {
@@ -127,37 +49,6 @@ async function GetUsers() {
         console.log(users);
     }
 }
-
-//!!!
-//GetUsers();
-
-
-function GetUserPre() {
-    const form = document.forms["userForm"];
-    const token = form.elements["token"].value;
-    console.log(token);
-    GetUser(token);
-}
-
-// Получение пользователя
-async function GetUser(token) {
-    // отправляет запрос и получаем ответ
-    const response = await fetch("/users/" + token, {
-        method: "GET",
-        headers: { "Accept": "application/json" }
-    });
-    // если запрос прошел нормально
-    if (response.ok === true) {
-        // получаем данные
-        const user = await response.json();
-        //let rows = document.querySelector("tbody"); 
-        console.log(user);
-    } else {
-        //const user = await response.json();
-        console.log('error1');
-    }
-}
-
 
 // отправка формы
 document.forms["userForm"].addEventListener("submit", e => {
