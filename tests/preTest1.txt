@@ -1,0 +1,3 @@
+POST
+http://localhost:3030/bmicalculator?wsdl
+Content-Type            text/xml; charset=utf-8
