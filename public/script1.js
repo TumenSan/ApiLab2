@@ -59,23 +59,6 @@ async function GetUsers(userName, userPassword) {
         document.body.append(loginLabel);
     }
 }
-/*
-// Получение всех пользователей
-async function GetUsers() {
-    // отправляет запрос и получаем ответ
-    const response = await fetch("/users", {
-        method: "GET",
-        headers: { "Accept": "application/json" }
-    });
-    // если запрос прошел нормально
-    if (response.ok === true) {
-        // получаем данные
-        const users = await response.json();
-
-        console.log(users);
-    }
-}
-*/
 
 // отправка формы
 document.forms["userForm"].addEventListener("submit", e => {
@@ -88,9 +71,3 @@ document.forms["userForm"].addEventListener("submit", e => {
     signup(name, password);
     //reset();
 });
-
-function reset(){
-    const form = document.forms["userForm"];
-    form.elements["name"].value = '';
-    form.elements["password"].value = '';
-}
