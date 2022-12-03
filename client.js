@@ -5,24 +5,8 @@ const soap = require('soap');
 app.use(express.static(__dirname + "/public"));
 const url = 'http://localhost:3030/bmicalculator?wsdl';
 const args = { weight: 65.7, height: 1.63 };
-/*
-app.get('/signup', function (req, res) {
-  soap.createClient(url, function(err, client) {
-    if (err) console.error(err);
-    else {
-      client.calculateBMI(args, function(err, response) {
-      //client.calculateC(args, function(err, response) {
-        if (err){ console.error(err); }
-        else {
-          console.log(response);
-          res.send('good');
-          //res.send(response);
-        }
-      });
-    }
-  });
-});
-*/
+
+
 app.post('/signup', jsonParser, function (req, res) {
   if(!req.body) return res.sendStatus(400);
       
@@ -39,8 +23,8 @@ app.post('/signup', jsonParser, function (req, res) {
         if (err){ console.error(err); }
         else {
           console.log(response);
-          res.send('good');
-          //res.send(response);
+          //res.send('good');
+          res.send(response);
         }
       });
     }
@@ -63,8 +47,8 @@ app.post('/users', jsonParser, function (req, res) {
         if (err){ console.error(err); }
         else {
           console.log(response);
-          res.send('good');
-          //res.send(response);
+          //res.send('good');
+          res.send(response);
         }
       });
     }

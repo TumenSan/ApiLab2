@@ -1,36 +1,7 @@
-function signinPre() {
-    
-    const form = document.forms["userForm"];
-    const name = form.elements["name"].value;
-    const password = form.elements["password"].value;
-    console.log(name);
-    console.log(password);
-    signin(name, password);
-}
-/*
-function signup() {
-    // отправляет запрос и получаем ответ
-    const response = fetch("/signup", {
-        method: "GET",
-        headers: { "Accept": "application/json"}
-    });
-    // если запрос прошел нормально
-    if (response.ok === true) {
-        // получаем данные
-        const users = response.json();
 
-        console.log(users);
-    }
-    // если запрос прошел неправильно
-    else {
-        console.log('Error signup');
-    }
-}
-*/
-
-function signup(userName, userPassword) {
+async function signup(userName, userPassword) {
     // отправляет запрос и получаем ответ
-    const response = fetch("/signup", {
+    const response = await fetch("/signup", {
         method: "POST",
         headers: { "Accept": "application/json", "Content-Type": "application/json"},
         body: JSON.stringify({
@@ -41,13 +12,17 @@ function signup(userName, userPassword) {
     // если запрос прошел нормально
     if (response.ok === true) {
         // получаем данные
-        const users = response.json();
+        const users = await response.json();
 
         console.log(users);
+
+        let loginLabel = document.createElement('div');
+
+        loginLabel.innerHTML = users.bmi;
+        document.body.append(loginLabel);
     }
     // если запрос прошел неправильно
     else {
-
         console.log('Error signup');
     }
 }
@@ -61,9 +36,9 @@ function PostSecondButton() {
     GetUsers(name, password);
 }
 // Получение всех пользователей
-function GetUsers(userName, userPassword) {
+async function GetUsers(userName, userPassword) {
     // отправляет запрос и получаем ответ
-    const response = fetch("/users", {
+    const response = await fetch("/users", {
         method: "POST",
         headers: { "Accept": "application/json", "Content-Type": "application/json"},
         body: JSON.stringify({
@@ -74,9 +49,14 @@ function GetUsers(userName, userPassword) {
     // если запрос прошел нормально
     if (response.ok === true) {
         // получаем данные
-        const users = response.json();
+        const users = await response.json();
 
         console.log(users);
+
+        let loginLabel = document.createElement('div');
+
+        loginLabel.innerHTML = users.bmi;
+        document.body.append(loginLabel);
     }
 }
 /*
