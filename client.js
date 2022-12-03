@@ -10,10 +10,8 @@ const args = { weight: 65.7, height: 1.63 };
 app.post('/signup', jsonParser, function (req, res) {
   if(!req.body) return res.sendStatus(400);
       
-  const userLogin = req.body.name;
-  const userPassword = req.body.password;
-  args.weight = userLogin;
-  args.height = userPassword;
+  args.weight = req.body.weight;
+  args.height = req.body.height;
   
   soap.createClient(url, function(err, client) {
     if (err) console.error(err);
@@ -34,10 +32,8 @@ app.post('/signup', jsonParser, function (req, res) {
 app.post('/users', jsonParser, function (req, res) {
   if(!req.body) return res.sendStatus(400);
       
-  const userLogin = req.body.name;
-  const userPassword = req.body.password;
-  args.weight = userLogin;
-  args.height = userPassword;
+  args.weight = req.body.weight;
+  args.height = req.body.height;
   
   soap.createClient(url, function(err, client) {
     if (err) console.error(err);

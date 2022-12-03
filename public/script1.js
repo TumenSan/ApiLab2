@@ -1,12 +1,12 @@
 
-async function signup(userName, userPassword) {
+async function signup(userweight, userheight) {
     // отправляет запрос и получаем ответ
     const response = await fetch("/signup", {
         method: "POST",
         headers: { "Accept": "application/json", "Content-Type": "application/json"},
         body: JSON.stringify({
-            name: userName,
-            password: userPassword
+            weight: userweight,
+            height: userheight
         })
     });
     // если запрос прошел нормально
@@ -29,21 +29,21 @@ async function signup(userName, userPassword) {
 
 function PostSecondButton() {
     const form = document.forms["userForm"];
-    const name = form.elements["name"].value;
-    const password = form.elements["password"].value;
-    console.log(name);
-    console.log(password);
-    GetUsers(name, password);
+    const weight = form.elements["weight"].value;
+    const height = form.elements["height"].value;
+    console.log(weight);
+    console.log(height);
+    GetUsers(weight, height);
 }
 // Получение всех пользователей
-async function GetUsers(userName, userPassword) {
+async function GetUsers(userweight, userheight) {
     // отправляет запрос и получаем ответ
     const response = await fetch("/users", {
         method: "POST",
         headers: { "Accept": "application/json", "Content-Type": "application/json"},
         body: JSON.stringify({
-            name: userName,
-            password: userPassword
+            weight: userweight,
+            height: userheight
         })
     });
     // если запрос прошел нормально
@@ -64,10 +64,9 @@ async function GetUsers(userName, userPassword) {
 document.forms["userForm"].addEventListener("submit", e => {
     e.preventDefault();
     const form = document.forms["userForm"];
-    const name = form.elements["name"].value;
-    const password = form.elements["password"].value;
-    console.log(name);
-    console.log(password);
-    signup(name, password);
-    //reset();
+    const weight = form.elements["weight"].value;
+    const height = form.elements["height"].value;
+    console.log(weight);
+    console.log(height);
+    signup(weight, height);
 });
