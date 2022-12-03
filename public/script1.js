@@ -52,7 +52,34 @@ function signup(userName, userPassword) {
     }
 }
 
+function PostSecondButton() {
+    const form = document.forms["userForm"];
+    const name = form.elements["name"].value;
+    const password = form.elements["password"].value;
+    console.log(name);
+    console.log(password);
+    GetUsers(name, password);
+}
+// Получение всех пользователей
+function GetUsers(userName, userPassword) {
+    // отправляет запрос и получаем ответ
+    const response = fetch("/users", {
+        method: "POST",
+        headers: { "Accept": "application/json", "Content-Type": "application/json"},
+        body: JSON.stringify({
+            name: userName,
+            password: userPassword
+        })
+    });
+    // если запрос прошел нормально
+    if (response.ok === true) {
+        // получаем данные
+        const users = response.json();
 
+        console.log(users);
+    }
+}
+/*
 // Получение всех пользователей
 async function GetUsers() {
     // отправляет запрос и получаем ответ
@@ -68,6 +95,7 @@ async function GetUsers() {
         console.log(users);
     }
 }
+*/
 
 // отправка формы
 document.forms["userForm"].addEventListener("submit", e => {
