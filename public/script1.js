@@ -7,11 +7,30 @@ function signinPre() {
     console.log(password);
     signin(name, password);
 }
-
-
-async function signup(userName, userPassword) {
+/*
+function signup() {
     // отправляет запрос и получаем ответ
-    const response = await fetch("/signup", {
+    const response = fetch("/signup", {
+        method: "GET",
+        headers: { "Accept": "application/json"}
+    });
+    // если запрос прошел нормально
+    if (response.ok === true) {
+        // получаем данные
+        const users = response.json();
+
+        console.log(users);
+    }
+    // если запрос прошел неправильно
+    else {
+        console.log('Error signup');
+    }
+}
+*/
+
+function signup(userName, userPassword) {
+    // отправляет запрос и получаем ответ
+    const response = fetch("/signup", {
         method: "POST",
         headers: { "Accept": "application/json", "Content-Type": "application/json"},
         body: JSON.stringify({
@@ -22,7 +41,7 @@ async function signup(userName, userPassword) {
     // если запрос прошел нормально
     if (response.ok === true) {
         // получаем данные
-        const users = await response.json();
+        const users = response.json();
 
         console.log(users);
     }
