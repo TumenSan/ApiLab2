@@ -13,6 +13,15 @@
     <part name="bmi" type="xsd:float"/>
   </message>
 
+  <message name="getBMIRequestString">
+    <part name="name1" type="xsd:string"/>
+    <part name="name2" type="xsd:string"/>
+  </message>
+
+  <message name="getBMIResponseString">
+    <part name="bmi" type="xsd:string"/>
+  </message>
+
   <portType name="Hello_PortType">
     <operation name="calculateBMI">
       <input message="tns:getBMIRequest"/>
@@ -21,6 +30,10 @@
     <operation name="calculateC">
       <input message="tns:getBMIRequest"/>
       <output message="tns:getBMIResponse"/>
+    </operation>
+    <operation name="operateString">
+      <input message="tns:getBMIRequestString"/>
+      <output message="tns:getBMIResponseString"/>
     </operation>
   </portType>
 
@@ -37,6 +50,15 @@
     </operation>
     <operation name="calculateC">
       <soap:operation soapAction="calculateC"/>
+      <input>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:examples:helloservice" use="encoded"/>
+      </input>
+      <output>
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:examples:helloservice" use="encoded"/>
+      </output>
+    </operation>
+    <operation name="operateString">
+      <soap:operation soapAction="operateString"/>
       <input>
         <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:examples:helloservice" use="encoded"/>
       </input>

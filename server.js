@@ -10,16 +10,19 @@ const service = {
   BMI_Service: {
     BMI_Port: {
       calculateBMI(args) {
-        //console.log(Date().getFullYear())
-        const year = new Date().getFullYear();
         const n = args.weight / (args.height * args.height);
         console.log(n);
         return { bmi: n };
       },
       calculateC(args) {
-        //console.log(Date().getFullYear())
-        const year = new Date().getFullYear();
         const n = args.weight / (args.height * args.height) + 1;
+        console.log(n);
+        return { bmi: n };
+      },
+      operateString(args) {
+        let str1 = args.weight;
+        let str2 = args.height;
+        const n = str1 + str2;
         console.log(n);
         return { bmi: n };
       }
